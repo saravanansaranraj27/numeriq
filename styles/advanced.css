@@ -1,0 +1,64 @@
+.complex-inputs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.complex-inputs > div {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-soft);
+}
+.complex-inputs span {
+  grid-column: 1 / -1;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+@media (max-width: 680px) {
+  .complex-inputs {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 420px) {
+  .complex-inputs > div {
+    grid-template-columns: 1fr;
+  }
+  .complex-inputs span {
+    grid-column: auto;
+  }
+}
+
+.calculus-expression-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(120px, 0.32fr);
+  align-items: end;
+}
+.calculus-expression-grid .field-label {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.calculus-expression-preview {
+  min-width: 0;
+  max-width: 100%;
+  margin: 8px 0 14px;
+  color: var(--muted);
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.calculus-expression-preview strong {
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 650;
+}
+@media (max-width: 560px) {
+  .calculus-expression-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(90px, 0.4fr);
+  }
+}

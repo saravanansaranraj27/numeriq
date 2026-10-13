@@ -1,0 +1,378 @@
+.graph-card {
+  position: relative;
+  overflow: visible;
+  isolation: isolate;
+}
+.dashboard-graph .tool-card {
+  height: 100%;
+}
+.plot-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+.plot-control-row {
+  display: flex;
+  gap: 8px;
+  min-width: 0;
+}
+.plot-control-row select {
+  min-width: 0;
+  max-width: 100%;
+}
+.plot-control-row select {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+.plot-controls > button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.plot-controls > button {
+  width: 100%;
+}
+.plot-remove {
+  display: inline-flex;
+  flex: 0 0 40px;
+  width: 40px;
+  min-width: 40px;
+  min-height: var(--control-height);
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--muted);
+}
+.plot-remove:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+.plot-controls label {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.plot-controls label input {
+  flex: 1;
+}
+.plot-wrap {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-soft);
+}
+.plot-wrap svg {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 760 / 360;
+}
+.plot-axis {
+  stroke: var(--border-strong);
+  stroke-width: 1;
+}
+.plot-grid {
+  stroke: var(--border);
+  stroke-width: 0.7;
+  opacity: 0.75;
+}
+.plot-line {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.2;
+}
+.plot-line-1 {
+  stroke: var(--plot-1);
+}
+.plot-line-2 {
+  stroke: var(--plot-2);
+}
+.plot-line-3 {
+  stroke: var(--plot-3);
+}
+.plot-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.plot-legend span {
+  max-width: 100%;
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 14px;
+  line-height: 1.35;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 760px) {
+  .plot-controls label {
+    min-height: 42px;
+  }
+}
+@media (max-width: 520px) {
+  .plot-wrap svg {
+    min-height: 0;
+  }
+  .plot-legend span {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+}
+
+.plot-select-wrap {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  z-index: 1;
+}
+.plot-select-wrap:has(.plot-select-menu) {
+  z-index: 100;
+}
+.plot-select-trigger {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  min-height: var(--control-height);
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 13px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-weight: 650;
+  text-align: left;
+  cursor: pointer;
+}
+.plot-select-trigger:hover,
+.plot-select-trigger[aria-expanded="true"] {
+  border-color: color-mix(in srgb, var(--accent) 38%, var(--border));
+}
+.plot-select-trigger:focus-visible {
+  outline: 3px solid var(--accent-soft);
+  outline-offset: 2px;
+}
+.plot-select-trigger > span {
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+}
+.plot-select-trigger > svg {
+  flex: 0 0 auto;
+  color: var(--muted);
+  transition: transform 0.16s ease;
+}
+.plot-select-trigger[aria-expanded="true"] > svg {
+  transform: rotate(180deg);
+  color: var(--accent);
+}
+.plot-select-menu {
+  position: absolute;
+  z-index: 1000;
+  top: calc(100% + 7px);
+  right: 0;
+  left: 0;
+  max-height: min(320px, 55vh);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 6px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface-elevated);
+  color: var(--text);
+  box-shadow: 0 14px 36px rgb(0 0 0 / 24%);
+  scrollbar-width: thin;
+  scrollbar-color: var(--muted) transparent;
+}
+.plot-select-option {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 550;
+  text-align: left;
+  cursor: pointer;
+}
+.plot-select-option:hover,
+.plot-select-option:focus-visible {
+  background: color-mix(in srgb, var(--accent) 12%, var(--surface));
+  border-color: color-mix(in srgb, var(--accent) 24%, var(--border));
+  outline: none;
+}
+.plot-select-option.is-selected {
+  color: var(--accent);
+}
+.plot-select-option > svg {
+  flex: 0 0 auto;
+  color: var(--accent);
+}
+.plot-control-row {
+  width: 100%;
+  min-width: 0;
+}
+.plot-control-row .plot-select-wrap {
+  min-width: 0;
+  width: 100%;
+}
+.plot-control-row .plot-select-trigger {
+  min-height: 48px;
+}
+.plot-control-row > .plot-remove {
+  flex-shrink: 0;
+}
+
+.plot-select-menu-portal {
+  position: fixed;
+  z-index: 99999;
+}
+
+.plot-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 10px;
+}
+.plot-control-row {
+  display: flex;
+  flex: 1 1 230px;
+  width: auto;
+  min-width: 0;
+  gap: 8px;
+}
+.plot-control-row .plot-select-wrap {
+  flex: 1 1 0;
+  width: auto;
+  min-width: 0;
+}
+.plot-control-row .plot-select-trigger {
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  max-width: 100%;
+}
+.plot-select-trigger > svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.plot-select-trigger > svg path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.plot-control-row > .plot-remove {
+  display: inline-flex;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 48px;
+  min-width: 40px;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.plot-controls > button {
+  flex: 1 1 180px;
+  width: auto;
+  min-width: 0;
+}
+.plot-controls > label {
+  flex: 1 1 190px;
+  min-width: 0;
+  min-height: 48px;
+}
+.plot-select-menu-portal {
+  position: fixed;
+  z-index: 99999;
+}
+.plot-select-menu-portal .plot-select-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 42px;
+}
+@media (max-width: 760px) {
+  .plot-control-row {
+    flex-basis: 100%;
+  }
+  .plot-controls > button,
+  .plot-controls > label {
+    flex-basis: 100%;
+  }
+}
+
+.plot-select-trigger {
+  border-radius: 14px;
+  font-weight: 550;
+}
+
+.plot-select-menu {
+  border-radius: 14px;
+  box-shadow: var(--shadow-lg, 0 18px 44px rgba(0, 0, 0, 0.3));
+  backdrop-filter: blur(18px);
+}
+
+.plot-select-option {
+  min-height: 42px;
+  padding: 9px 11px;
+  border-radius: 9px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 550;
+}
+
+.plot-select-option:hover,
+.plot-select-option:focus-visible {
+  border-color: transparent;
+  background: var(--accent-soft);
+}
+
+.plot-select-option.is-selected {
+  color: var(--accent);
+  background: var(--accent-soft);
+  font-weight: 650;
+}
